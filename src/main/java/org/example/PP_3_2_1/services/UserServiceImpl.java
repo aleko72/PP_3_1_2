@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -21,8 +21,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getUsers() {
-        List<User> users = userRepository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
     @Override
@@ -39,7 +38,10 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public void update(long id, User user) {
-        userRepository.save(user);
+        User userDb = getUserById(id);
+        if (userDb != null) {
+            userRepository.save(user);
+        }
     }
 
     @Override
