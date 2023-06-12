@@ -1,11 +1,14 @@
 package org.example.PP_3_2_1.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,11 +19,16 @@ public class User {
     @Column(name = "id")
     private long id;
     @Column(name = "name")
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "LastName should not be empty")
+    @Size(min = 2, max = 30, message = "LastName should be between 2 and 30 characters")
     private String lastName;
     @Column(name = "age")
+    @Min(value = 0, message = "Age should be greater than 0")
     private int age;
 
     public User() {

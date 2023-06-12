@@ -37,11 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void update(long id, User user) {
-        User userDb = getUserById(id);
-        if (userDb != null) {
-            userRepository.save(user);
-        }
+    public void update(User user) {
+        userRepository.save(user);
     }
 
     @Override
